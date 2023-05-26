@@ -1,6 +1,6 @@
 import { withAuth } from "next-auth/middleware";
-import { isPublicRoute } from "./services/routeMatcher";
-// import { NextResponse } from "next/server";
+import { isPublicRoute } from "@/libs/routeMatcher";
+import { NextResponse } from "next/server";
 
 const internalRoutesToSkip = [
   "/_next",
@@ -22,6 +22,7 @@ export default withAuth(
     // ) {
     //   return new NextResponse("You are not authorized!");
     // }
+    return NextResponse.next();
   },
   {
     callbacks: {

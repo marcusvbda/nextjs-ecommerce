@@ -1,17 +1,15 @@
 "use client";
 
-import { useSession, signIn, signOut } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
-export default function Component({ children }: any) {
-  const { data: session }: any = useSession();
+export default function Component() {
+  const { data: session } = useSession();
 
-  if (session === undefined) return <></>;
-
-  if (session) {
+  if (session?.user) {
     return (
       <>
-        Signed in as {session.user.email} <br />
+        Signed in as {session?.user?.email} <br />
         <pre>{JSON.stringify(session, null, 2)}</pre>
         {/* <UserInformation data={session.user} /> */}
         <button onClick={() => signOut()}>Sign out</button>
