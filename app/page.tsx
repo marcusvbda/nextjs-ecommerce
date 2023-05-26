@@ -1,10 +1,12 @@
 import React from "react";
 import LoginBtn from "./login-btn";
+import { Inter } from "next/font/google";
+const inter = Inter({ subsets: ["latin"] });
 
-export default function Home() {
+export default function MyApp() {
   return (
-    <div>
+    <main className={inter.className}>
       <LoginBtn />
-    </div>
+    </main>
   );
 }
