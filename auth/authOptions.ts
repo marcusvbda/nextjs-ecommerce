@@ -1,17 +1,11 @@
 import { NextAuthOptions } from "next-auth";
-import GitHubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
 export const authOptions: NextAuthOptions = {
+  pages: {
+    signIn: "/login",
+  },
   providers: [
-    GitHubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    } as any),
-    // FacebookProvider({
-    //   clientId: process.env.FACEBOOK_CLIENT_ID,
-    //   clientSecret: process.env.FACEBOOK_CLIENT_SECRET,
-    // }),
     CredentialsProvider({
       credentials: {
         email: {
@@ -58,7 +52,6 @@ export const authOptions: NextAuthOptions = {
     } as any),
     // ...add more providers here
   ],
-  secret: process.env.JWT_SECRET,
   callbacks: {
     async jwt({ token, user, account }: any) {
       if (account && user) {

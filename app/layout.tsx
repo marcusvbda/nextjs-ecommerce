@@ -1,7 +1,6 @@
-import Link from "next/link";
 import Providers from "./providers";
 import { getServerSession } from "next-auth";
-import { authOptions } from "@/libs/authOptions";
+import { authOptions } from "@/auth/authOptions";
 
 export const metadata = {
   title: "Create Next App",

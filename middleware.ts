@@ -11,17 +11,10 @@ const internalRoutesToSkip = [
   "/favicon.ico",
 ];
 
-const publicRoutes = ["/"];
+const publicRoutes = ["/", "/login"];
 
 export default withAuth(
   function middleware(req) {
-    // return NextResponse.next();
-    // if (
-    //   req.nextUrl.pathname === "/admin-dashboard" &&
-    //   req.nextauth.token?.role !== "admin"
-    // ) {
-    //   return new NextResponse("You are not authorized!");
-    // }
     return NextResponse.next();
   },
   {
