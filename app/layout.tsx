@@ -1,6 +1,7 @@
 import Providers from "./providers";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/auth/authOptions";
+import "@/styles/app.scss";
 
 export const metadata = {
   title: "Create Next App",

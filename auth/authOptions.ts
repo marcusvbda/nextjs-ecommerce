@@ -1,5 +1,6 @@
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+const apiUrl = process.env.API_ROUTE;
 
 export const authOptions: NextAuthOptions = {
   pages: {
@@ -21,30 +22,21 @@ export const authOptions: NextAuthOptions = {
           password: credentials.password,
         };
 
-        // const res = await fetch(
-        //   "https://cloudcoders.azurewebsites.net/api/tokens",
-        //   {
-        //     method: "POST",
-        //     body: JSON.stringify(payload),
-        //     headers: {
-        //       "Content-Type": "application/json",
-        //     },
-        //   }
-        // );
+        // const res = await fetch(`${apiUrl}/authenticate`, {
+        //   method: "POST",
+        //   body: JSON.stringify(payload),
+        //   headers: {
+        //     "Content-Type": "application/json",
+        //   },
+        // });
 
-        // const user = await res.json();
+        // console.log(res);
+
         // if (!res.ok) {
-        //   throw new Error(user.message);
-        // }
-        // // If no error and we have user data, return it
-        // if (res.ok && user) {
-        //   return user;
+        //   throw new Error("Usuário ou senha inválidos");
         // }
         return {
-          id: 12,
-          name: "vinicius",
-          email: credentials.email,
-          image: "https://avatars.githubusercontent.com/u/123?s=60&v=4",
+          ...payload,
         };
         // Return null if user data could not be retrieved
         return null;

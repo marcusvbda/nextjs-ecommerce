@@ -11,7 +11,7 @@ const internalRoutesToSkip = [
   "/favicon.ico",
 ];
 
-const publicRoutes = ["/", "/login"];
+const publicRoutes = ["/login"];
 
 export default withAuth(
   function middleware(req) {
