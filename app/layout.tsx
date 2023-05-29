@@ -5,7 +5,7 @@ import "@/styles/app.scss";
 
 export const metadata = {
   title: "Next Ecommerce",
-  description: "Description here ...",
+  description: "...",
 };
 
 export default async function RootLayout({ children }: any) {
@@ -13,7 +13,7 @@ export default async function RootLayout({ children }: any) {
 
   return (
     <html lang="en">
-      <body>
+      <body suppressHydrationWarning={true}>
         <Providers session={session}>{children}</Providers>
       </body>
     </html>

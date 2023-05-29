@@ -1,36 +1,43 @@
 "use client";
 
-import {
-  Button,
-  Container,
-  Grid,
-  Link,
-  Toolbar,
-  Typography,
-} from "@mui/material";
+import { Button, Container, Link, Toolbar, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
 import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface IProps {
   children: any;
 }
 
 export default function AdminTemplate(props: IProps) {
-  const { data: session } = useSession();
-  console.log("logged session", session);
+  const [mounted, setMounted] = useState(false);
+  const router = useRouter();
+  // const { data: session } = useSession();
+
+  useEffect(() => {
+    // console.log("logged session", session);
+    setMounted(true);
+  }, []);
 
   return (
     <>
       <AppBar position="static" color="default" elevation={0}>
         <Toolbar sx={{ flexWrap: "wrap" }}>
-          <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
+          <Typography
+            variant="h6"
+            color="inherit"
+            noWrap
+            onClick={() => router.push("/")}
+            sx={{ flexGrow: 1, cursor: "pointer" }}
+          >
             Vibbra Ecommerce
           </Typography>
           <nav>
             <Link
               variant="button"
               color="text.primary"
-              href="deals/create"
+              href="/deals/create"
               sx={{ my: 1, mx: 1.5 }}
             >
               Criar negociações

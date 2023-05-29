@@ -11,9 +11,5 @@ export default function DealCreatePage() {
 
   if (!mounted) return <></>;
 
-  return (
-    <>
-      <h1>Deals Create</h1>
-    </>
-  );
+  return <h1>Deals Create</h1>;
 }
