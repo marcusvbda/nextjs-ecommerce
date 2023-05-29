@@ -1,6 +1,6 @@
 "use client";
 
-import HomeCard from "@/components/home/HomeCard";
+import HomeCard from "@/components/home/home-card";
 import { Container, Grid } from "@mui/material";
 
 export default function HomeMenu() {
