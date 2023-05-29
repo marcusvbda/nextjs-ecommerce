@@ -22,27 +22,27 @@ export const authOptions: NextAuthOptions = {
           password: credentials.password,
         };
 
-        // const res = await fetch(`${apiUrl}/authenticate`, {
-        //   method: "POST",
-        //   body: JSON.stringify(payload),
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        // });
+        const res = await fetch(`${apiUrl}/authenticate`, {
+          method: "POST",
+          body: JSON.stringify(payload),
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        });
 
-        // console.log(res);
+        if (!res.ok) {
+          throw new Error("Usuário ou senha inválidos");
+        }
 
-        // if (!res.ok) {
-        //   throw new Error("Usuário ou senha inválidos");
-        // }
-        return {
-          ...payload,
-        };
-        // Return null if user data could not be retrieved
-        return null;
+        const { user } = await res.json();
+        if (!user) {
+          throw new Error("Usuário ou senha inválidos");
+        }
+
+        return user;
       },
     } as any),
-    // ...add more providers here
   ],
   callbacks: {
     async jwt({ token, user, account }: any) {

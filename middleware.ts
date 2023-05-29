@@ -11,7 +11,7 @@ const internalRoutesToSkip = [
   "/favicon.ico",
 ];
 
-const publicRoutes = ["/login"];
+const publicRoutes = ["/login", "/api/vibbra/authenticate"];
 
 export default withAuth(
   function middleware(req) {

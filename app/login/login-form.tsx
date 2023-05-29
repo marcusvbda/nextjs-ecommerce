@@ -10,7 +10,7 @@ export default function LoginForm() {
   const router = useRouter();
   const { Toast } = useSweetAlert();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") || "/admin";
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [domLoaded, setDomLoaded] = useState(false);
   const [formValues, setFormValues] = useState({
     email: "",
