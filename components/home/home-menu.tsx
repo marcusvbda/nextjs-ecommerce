@@ -7,9 +7,9 @@ export default function HomeMenu() {
   return (
     <Container maxWidth="md" component="main">
       <Grid container spacing={3}>
-        <HomeCard title="Criar negociação" href="/negociacoes/criar" />
-        <HomeCard title="Minhas negociações" href="/negociacoes" />
-        <HomeCard title="Meus convites" href="/convites" />
+        <HomeCard title="Criar negociação" href="/deals/create" />
+        <HomeCard title="Minhas negociações" href="/deals" />
+        <HomeCard title="Meus convites" href="/invites" />
       </Grid>
     </Container>
   );

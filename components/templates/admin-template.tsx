@@ -30,7 +30,7 @@ export default function AdminTemplate(props: IProps) {
             <Link
               variant="button"
               color="text.primary"
-              href="#"
+              href="deals/create"
               sx={{ my: 1, mx: 1.5 }}
             >
               Criar negociações
@@ -38,7 +38,7 @@ export default function AdminTemplate(props: IProps) {
             <Link
               variant="button"
               color="text.primary"
-              href="#"
+              href="/deals"
               sx={{ my: 1, mx: 1.5 }}
             >
               Minhas negociações
@@ -46,7 +46,7 @@ export default function AdminTemplate(props: IProps) {
             <Link
               variant="button"
               color="text.primary"
-              href="#"
+              href="/invites"
               sx={{ my: 1, mx: 1.5 }}
             >
               Meus convites
