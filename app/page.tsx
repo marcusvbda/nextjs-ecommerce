@@ -1,12 +1,11 @@
+import AdminTemplate from "@/components/templates/AdminTemplate";
 import React from "react";
-import LoginBtn from "./login-btn";
-import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
+import HomeMenu from "./HomeMenu";
 
 export default async function MyApp() {
   return (
-    <main className={inter.className}>
-      <LoginBtn />
-    </main>
+    <AdminTemplate>
+      <HomeMenu />
+    </AdminTemplate>
   );
 }

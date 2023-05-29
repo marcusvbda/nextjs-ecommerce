@@ -11,6 +11,7 @@ import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useSweetAlert } from "@/hooks/sweetalert";
+import * as yup from "yup";
 
 const Copyright = (props: any) => {
   return (
@@ -36,9 +37,10 @@ export default function LoginForm() {
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [mounted, setMounted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
-    email: "",
-    password: "",
+    email: "admin@admin.com.br",
+    password: "Adm1n!str4tor@00",
   });
 
   useEffect(() => {
@@ -53,28 +55,50 @@ export default function LoginForm() {
   };
 
   const handleSubmit = async (evt: any) => {
+    setLoading(true);
     evt.preventDefault();
 
-    const res = await signIn("credentials", {
-      redirect: false,
-      email: formValues.email,
-      password: formValues.password,
-      callbackUrl,
+    let schemaValidation = yup.object().shape({
+      email: yup.string().email().required("Email é obrigatório"),
+      password: yup
+        .string()
+        .min(6, "A senha deve ter pelo menos 6 caracteres")
+        .matches(
+          /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+          "A senha deve conter pelo menos 1 caractere especial, 1 caractere maiúsculo e 1 número"
+        )
+        .required("Senha é obrigatória"),
     });
 
-    if (res?.error) {
-      return Toast().fire({
-        icon: "error",
-        title: res.error,
+    schemaValidation
+      .validate(formValues, { abortEarly: false })
+      .then(async () => {
+        const res = await signIn("credentials", {
+          redirect: false,
+          email: formValues.email,
+          password: formValues.password,
+          callbackUrl,
+        });
+
+        if (res?.error) {
+          setLoading(false);
+          return Toast().fire({
+            icon: "error",
+            title: res.error,
+          });
+        }
+
+        setTimeout(() => {
+          router.push(callbackUrl);
+        });
+      })
+      .catch((err) => {
+        setLoading(false);
+        Toast().fire({
+          icon: "error",
+          title: err.errors.join("<br/>"),
+        });
       });
-    }
-
-    Toast().fire({
-      icon: "success",
-      title: "Você está logado",
-    });
-
-    router.push(callbackUrl);
   };
 
   return (
@@ -94,7 +118,7 @@ export default function LoginForm() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-          Login de Sistema
+          Login de Vibbra
         </Typography>
         <Grid
           component="form"
@@ -108,23 +132,28 @@ export default function LoginForm() {
             fullWidth
             label="Email"
             name="email"
+            value={formValues.email}
             onChange={handleChange}
             autoFocus
+            disabled={loading}
           />
           <TextField
             margin="normal"
             required
             fullWidth
+            value={formValues.password}
             name="password"
             label="Senha"
             type="password"
             onChange={handleChange}
+            disabled={loading}
           />
           <Button
             type="submit"
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            disabled={loading}
           >
             Entrar
           </Button>
