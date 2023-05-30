@@ -1,3 +1,5 @@
+import DealsList from "./fragments/deal-list";
+
 export default function DealsPage() {
-  return <h1>Deals List</h1>;
+  return <DealsList />;
 }

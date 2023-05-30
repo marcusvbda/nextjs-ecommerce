@@ -1,3 +1,5 @@
-export default function InvitesPages() {
-  return <h1>Invite List</h1>;
+import InvitesList from "./fragments/invites-list";
+
+export default function InvitePage() {
+  return <InvitesList />;
 }

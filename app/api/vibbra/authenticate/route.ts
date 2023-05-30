@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-export function POST(req: any) {
+const handler = async (req: any) => {
   return NextResponse.json({
     token: "23d45q67v89n01w2e3r45t6y78u90i",
     user: {
@@ -18,4 +18,6 @@ export function POST(req: any) {
       },
     },
   });
-}
+};
+
+export { handler as POST };

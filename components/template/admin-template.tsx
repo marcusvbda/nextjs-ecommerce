@@ -12,7 +12,6 @@ interface IProps {
 export default function AdminTemplate(props: IProps) {
   const route = usePathname();
   const router = useRouter();
-  // const { data: session } = useSession();
 
   if (["/login"].includes(route)) return <>{props.children}</>;
 
@@ -41,15 +40,6 @@ export default function AdminTemplate(props: IProps) {
           <nav>
             <Link
               variant="button"
-              color={getLinkColor("/deals/create")}
-              href="#"
-              onClick={(evt: any) => handleClickRouter(evt, "/deals/create")}
-              sx={{ my: 1, mx: 1.5 }}
-            >
-              Criar negociações
-            </Link>
-            <Link
-              variant="button"
               color={getLinkColor("/deals")}
               onClick={(evt: any) => handleClickRouter(evt, "/deals")}
               href="#"
@@ -69,6 +59,7 @@ export default function AdminTemplate(props: IProps) {
           </nav>
           <Button
             variant="outlined"
+            size="small"
             sx={{ my: 1, mx: 1.5 }}
             onClick={() => signOut()}
           >

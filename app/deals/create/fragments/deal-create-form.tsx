@@ -39,8 +39,8 @@ export default function DealCreatePage(props: IProps) {
   const [formValues, setFormValues] = useState<IFormValues>({
     id: props?.initialData?.id,
     type: props?.initialData?.type || "sale",
-    value: props?.initialData?.value || 21,
-    description: props?.initialData?.description || "ete",
+    value: props?.initialData?.value || 0,
+    description: props?.initialData?.description || "",
   });
 
   useEffect(() => {
