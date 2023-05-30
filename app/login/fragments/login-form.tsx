@@ -14,6 +14,11 @@ import { useSweetAlert } from "@/hooks/sweetalert";
 import * as yup from "yup";
 import Copyright from "./copy-right";
 
+interface IFormValues {
+  email: string;
+  password: string;
+}
+
 export default function LoginForm() {
   const { Toast } = useSweetAlert();
   const router = useRouter();
@@ -21,7 +26,7 @@ export default function LoginForm() {
   const callbackUrl = searchParams.get("callbackUrl") || "/";
   const [mounted, setMounted] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState<IFormValues>({
     email: "admin@admin.com.br",
     password: "Adm1n!str4tor@00",
   });
