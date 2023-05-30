@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
 const list = async () => {
-  const arr: { id: number; value: number; description: string }[] = [];
+  const arr: { id: number; email: string; description: string }[] = [];
 
   for (let i = 1; i <= 25; i++) {
     const ob = {
