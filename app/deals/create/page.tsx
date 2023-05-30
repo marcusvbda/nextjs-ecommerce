@@ -1,10 +1,5 @@
-import DealCreateForm from "@/components/deals/deal-create-form";
-import AdminTemplate from "@/components/templates/admin-template";
+import DealCreateForm from "./fragments/deal-create-form";
 
 export default function DealsCreatePage() {
-  return (
-    <AdminTemplate>
-      <DealCreateForm />
-    </AdminTemplate>
-  );
+  return <DealCreateForm />;
 }

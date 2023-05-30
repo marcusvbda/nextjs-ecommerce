@@ -12,24 +12,7 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useSweetAlert } from "@/hooks/sweetalert";
 import * as yup from "yup";
-
-const Copyright = (props: any) => {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://github.com/marcusvbda">
-        MV Bassalobre
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-};
+import Copyright from "./copy-right";
 
 export default function LoginForm() {
   const { Toast } = useSweetAlert();

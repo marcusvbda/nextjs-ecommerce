@@ -1,5 +1,4 @@
-import LoginForm from "@/components/login/login-form";
-import AdminTemplate from "@/components/templates/admin-template";
+import LoginForm from "./fragments/login-form";
 
 export default async function LoginPage() {
   return <LoginForm />;

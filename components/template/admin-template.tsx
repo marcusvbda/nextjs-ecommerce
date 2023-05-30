@@ -2,23 +2,28 @@
 
 import { Button, Container, Link, Toolbar, Typography } from "@mui/material";
 import AppBar from "@mui/material/AppBar";
-import { signOut, useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { signOut } from "next-auth/react";
+import { usePathname, useRouter } from "next/navigation";
 
 interface IProps {
   children: any;
 }
 
 export default function AdminTemplate(props: IProps) {
-  const [mounted, setMounted] = useState(false);
+  const route = usePathname();
   const router = useRouter();
   // const { data: session } = useSession();
 
-  useEffect(() => {
-    // console.log("logged session", session);
-    setMounted(true);
-  }, []);
+  if (["/login"].includes(route)) return <>{props.children}</>;
+
+  const handleClickRouter = (evt: any, route: any) => {
+    evt.preventDefault();
+    router.push(route);
+  };
+
+  const getLinkColor = (linkRoute: any) => {
+    return route === linkRoute ? "text.secondary" : "text.primary";
+  };
 
   return (
     <>
@@ -28,7 +33,7 @@ export default function AdminTemplate(props: IProps) {
             variant="h6"
             color="inherit"
             noWrap
-            onClick={() => router.push("/")}
+            onClick={(evt: any) => handleClickRouter(evt, "/")}
             sx={{ flexGrow: 1, cursor: "pointer" }}
           >
             Vibbra Ecommerce
@@ -36,24 +41,27 @@ export default function AdminTemplate(props: IProps) {
           <nav>
             <Link
               variant="button"
-              color="text.primary"
-              href="/deals/create"
+              color={getLinkColor("/deals/create")}
+              href="#"
+              onClick={(evt: any) => handleClickRouter(evt, "/deals/create")}
               sx={{ my: 1, mx: 1.5 }}
             >
               Criar negociações
             </Link>
             <Link
               variant="button"
-              color="text.primary"
-              href="/deals"
+              color={getLinkColor("/deals")}
+              onClick={(evt: any) => handleClickRouter(evt, "/deals")}
+              href="#"
               sx={{ my: 1, mx: 1.5 }}
             >
               Minhas negociações
             </Link>
             <Link
               variant="button"
-              color="text.primary"
-              href="/invites"
+              color={getLinkColor("/invites")}
+              href="#"
+              onClick={(evt: any) => handleClickRouter(evt, "/invites")}
               sx={{ my: 1, mx: 1.5 }}
             >
               Meus convites
