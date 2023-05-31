@@ -1,5 +1,6 @@
 "use client";
 
+import InputText from "@/components/common/input-text";
 import { useSweetAlert } from "@/hooks/sweetalert";
 import {
   Button,
@@ -31,7 +32,7 @@ interface IProps {
   initialData?: IFormValues;
 }
 
-export default function DealCreatePage(props: IProps) {
+export default function DealCreateForm(props: IProps) {
   const { Toast } = useSweetAlert();
   const router = useRouter();
   const [mounted, setMounted] = useState(false);
@@ -43,9 +44,7 @@ export default function DealCreatePage(props: IProps) {
     description: props?.initialData?.description || "",
   });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   const handleChange = (event: any) => {
     const { name, value } = event.target;
@@ -103,6 +102,31 @@ export default function DealCreatePage(props: IProps) {
   };
 
   if (!mounted) return <></>;
+
+  return (
+    <div className="flex align-center justify-center">
+      <div className="w-1/3 rounded overflow-hidden shadow-lg border-gray-200 border p-8">
+        <h3 className="text-xl">Criar Negociação</h3>
+        <form onSubmit={handleSubmit}>
+          <div className="flex flex-col mt-5">
+            <InputText
+              label="Valor"
+              name="value"
+              onChange={handleChange}
+              value={formValues.value}
+              type="number"
+            />
+            <InputText
+              onChange={handleChange}
+              value={formValues.description}
+              multiline={true}
+              rows={6}
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  );
 
   return (
     <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>

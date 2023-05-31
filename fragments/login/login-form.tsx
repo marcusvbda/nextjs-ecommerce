@@ -5,6 +5,8 @@ import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useSweetAlert } from "@/hooks/sweetalert";
 import * as yup from "yup";
+import Button from "@/components/common/button";
+import InputText from "@/components/common/input-text";
 
 interface IFormValues {
   email: string;
@@ -23,9 +25,7 @@ export default function LoginForm() {
     password: "Adm1n!str4tor@00",
   });
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => setMounted(true), []);
 
   if (!mounted) return <></>;
 
@@ -83,50 +83,26 @@ export default function LoginForm() {
 
   return (
     <form className="space-y-6" onSubmit={handleSubmit}>
+      <InputText
+        value={formValues.email}
+        onChange={handleChange}
+        disabled={loading}
+        label="Email"
+        name="email"
+        type="email"
+      />
+      <InputText
+        value={formValues.password}
+        onChange={handleChange}
+        disabled={loading}
+        label="Password"
+        name="password"
+        type="password"
+      />
       <div>
-        <label htmlFor="email" className="input-label">
-          Email address
-        </label>
-        <div className="mt-2">
-          <input
-            id="email"
-            name="email"
-            type="email"
-            value={formValues.email}
-            onChange={handleChange}
-            disabled={loading}
-            autoComplete="email"
-            required
-            className="tail-input"
-          />
-        </div>
-      </div>
-
-      <div>
-        <div className="flex items-center justify-between">
-          <label htmlFor="password" className="input-label">
-            Password
-          </label>
-        </div>
-        <div className="mt-2">
-          <input
-            id="password"
-            name="password"
-            type="password"
-            autoComplete="current-password"
-            value={formValues.password}
-            onChange={handleChange}
-            disabled={loading}
-            required
-            className="tail-input"
-          />
-        </div>
-      </div>
-
-      <div>
-        <button type="submit" className="btn-primary">
+        <Button loading={loading} type="submit" block>
           Sign in
-        </button>
+        </Button>
       </div>
     </form>
   );
