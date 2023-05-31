@@ -1,18 +1,10 @@
 "use client";
-import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useSweetAlert } from "@/hooks/sweetalert";
 import * as yup from "yup";
-import Copyright from "./copy-right";
 
 interface IFormValues {
   email: string;
@@ -90,76 +82,52 @@ export default function LoginForm() {
   };
 
   return (
-    <Grid container component="main" sx={{ height: "100vh" }}>
-      <Grid
-        item
-        md={12}
-        sx={{
-          my: 8,
-          mx: 4,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-        }}
-      >
-        <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">
-          Login de Vibbra
-        </Typography>
-        <Grid
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-          sx={{ mt: 1 }}
-        >
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            label="Email"
+    <form className="space-y-6" onSubmit={handleSubmit}>
+      <div>
+        <label htmlFor="email" className="input-label">
+          Email address
+        </label>
+        <div className="mt-2">
+          <input
+            id="email"
             name="email"
+            type="email"
             value={formValues.email}
             onChange={handleChange}
-            autoFocus
             disabled={loading}
-          />
-          <TextField
-            margin="normal"
+            autoComplete="email"
             required
-            fullWidth
-            value={formValues.password}
+            className="tail-input"
+          />
+        </div>
+      </div>
+
+      <div>
+        <div className="flex items-center justify-between">
+          <label htmlFor="password" className="input-label">
+            Password
+          </label>
+        </div>
+        <div className="mt-2">
+          <input
+            id="password"
             name="password"
-            label="Senha"
             type="password"
+            autoComplete="current-password"
+            value={formValues.password}
             onChange={handleChange}
             disabled={loading}
+            required
+            className="tail-input"
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-            disabled={loading}
-          >
-            Entrar
-          </Button>
-          <Grid md={12} item container>
-            <Grid item xs>
-              <Link href="#" variant="body2">
-                Esqueceu a senha?
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link href="#" variant="body2">
-                {"Não tem um conta ainda? Cadastre-se"}
-              </Link>
-            </Grid>
-          </Grid>
-          <Copyright sx={{ mt: 5 }} />
-        </Grid>
-      </Grid>
-    </Grid>
+        </div>
+      </div>
+
+      <div>
+        <button type="submit" className="btn-primary">
+          Sign in
+        </button>
+      </div>
+    </form>
   );
 }
