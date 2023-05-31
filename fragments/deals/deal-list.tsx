@@ -1,6 +1,7 @@
 "use client";
 
-import { Box, Button, Grid, Typography } from "@mui/material";
+import Button from "@/components/common/button";
+import { Box } from "@mui/material";
 import { DataGrid, GridColDef, ptBR } from "@mui/x-data-grid";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -30,30 +31,18 @@ export default function DealsList() {
   }, []);
 
   return (
-    <>
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Grid item>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Minhas Negociações
-          </Typography>
-        </Grid>
-        <Grid item>
-          <Button
-            size="small"
-            variant="contained"
-            onClick={() => router.push("/deals/create")}
-          >
-            Nova Negociação
-          </Button>
-        </Grid>
-      </Grid>
+    <div className="flex flex-col">
+      <div className="flex items-center justify-between mb-3">
+        <h1 className="text-3xl font-bold">Minhas Negociações</h1>
+        <Button
+          size="small"
+          variant="contained"
+          onClick={() => router.push("/deals/create")}
+          className="ml-auto"
+        >
+          Nova Negociação
+        </Button>
+      </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           loading={loading}
@@ -68,6 +57,6 @@ export default function DealsList() {
           pageSizeOptions={[5, 10]}
         />
       </Box>
-    </>
+    </div>
   );
 }

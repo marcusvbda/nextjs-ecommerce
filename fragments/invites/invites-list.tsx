@@ -26,23 +26,11 @@ export default function InvitesList() {
 
     setTimeout(fetchData, 500);
   }, []);
-
   return (
-    <>
-      <Grid
-        container
-        sx={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "space-between",
-        }}
-      >
-        <Grid item>
-          <Typography variant="h4" component="h1" gutterBottom>
-            Meus Convites
-          </Typography>
-        </Grid>
-      </Grid>
+    <div className="flex flex-col">
+      <div className="flex items-center justify-between mb-3">
+        <h1 className="text-3xl font-bold">Meus Convites</h1>
+      </div>
       <Box sx={{ height: 400, width: "100%" }}>
         <DataGrid
           loading={loading}
@@ -57,6 +45,6 @@ export default function InvitesList() {
           pageSizeOptions={[5, 10]}
         />
       </Box>
-    </>
+    </div>
   );
 }

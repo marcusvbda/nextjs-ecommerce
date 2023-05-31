@@ -1,9 +1,9 @@
 export default function InputText(props: any) {
   const label = props?.label || "";
-  const multiline = props?.multiline !== undefined;
+  const multiline = props?.rows > 1;
 
   return (
-    <div>
+    <div className="mb-3">
       <div className="flex items-center justify-between">
         <label
           htmlFor="password"

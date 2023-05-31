@@ -1,23 +1,9 @@
 "use client";
 
+import Button from "@/components/common/button";
+import InputRadio from "@/components/common/input-radio";
 import InputText from "@/components/common/input-text";
 import { useSweetAlert } from "@/hooks/sweetalert";
-import {
-  Button,
-  Container,
-  FormControl,
-  FormControlLabel,
-  FormLabel,
-  Grid,
-  Input,
-  InputAdornment,
-  InputLabel,
-  Paper,
-  Radio,
-  RadioGroup,
-  TextField,
-  Typography,
-} from "@mui/material";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import * as yup from "yup";
@@ -109,6 +95,17 @@ export default function DealCreateForm(props: IProps) {
         <h3 className="text-xl">Criar Negociação</h3>
         <form onSubmit={handleSubmit}>
           <div className="flex flex-col mt-5">
+            <InputRadio
+              label="Tipo"
+              name="type"
+              onChange={handleChange}
+              value={formValues.type}
+              options={[
+                { label: "Venda", value: "sale" },
+                { label: "Troca", value: "change" },
+                { label: "Desejo", value: "wish" },
+              ]}
+            />
             <InputText
               label="Valor"
               name="value"
@@ -117,101 +114,17 @@ export default function DealCreateForm(props: IProps) {
               type="number"
             />
             <InputText
+              name="description"
               onChange={handleChange}
               value={formValues.description}
-              multiline={true}
               rows={6}
             />
+            <Button disabled={loading} type="submit">
+              Salvar
+            </Button>
           </div>
         </form>
       </div>
     </div>
-  );
-
-  return (
-    <Container component="main" maxWidth="sm" sx={{ mb: 4 }}>
-      <Paper
-        variant="outlined"
-        sx={{ my: { xs: 3, md: 6 }, p: { xs: 2, md: 3 } }}
-      >
-        <Typography variant="h6" gutterBottom>
-          Criar Negociação
-        </Typography>
-        <Grid
-          container
-          spacing={3}
-          component="form"
-          noValidate
-          onSubmit={handleSubmit}
-        >
-          <Grid item sm={12}>
-            <FormControl>
-              <FormLabel id="demo-row-radio-buttons-group-label">
-                Tipo
-              </FormLabel>
-              <RadioGroup
-                row
-                name="type"
-                value={formValues.type}
-                onChange={handleChange}
-              >
-                <FormControlLabel
-                  value="sale"
-                  control={<Radio />}
-                  label="Venda"
-                />
-                <FormControlLabel
-                  value="change"
-                  control={<Radio />}
-                  label="Troca"
-                />
-                <FormControlLabel
-                  value="wish"
-                  control={<Radio />}
-                  label="Desejo"
-                />
-              </RadioGroup>
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <FormControl fullWidth sx={{ m: 1 }} variant="standard">
-              <InputLabel htmlFor="standard-adornment-amount">Valor</InputLabel>
-              <Input
-                name="value"
-                onChange={handleChange}
-                value={formValues.value}
-                type="number"
-                startAdornment={
-                  <InputAdornment position="start">R$</InputAdornment>
-                }
-              />
-            </FormControl>
-          </Grid>
-          <Grid item xs={12}>
-            <TextField
-              name="description"
-              label="Descrição"
-              fullWidth
-              variant="standard"
-              onChange={handleChange}
-              value={formValues.description}
-              multiline
-              rows={6}
-            />
-          </Grid>
-          <Grid item xs={12}>
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={loading}
-            >
-              Salvar
-            </Button>
-          </Grid>
-        </Grid>
-      </Paper>
-    </Container>
   );
 }
