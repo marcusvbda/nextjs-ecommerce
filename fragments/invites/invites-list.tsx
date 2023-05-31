@@ -1,10 +1,9 @@
 "use client";
 
-import { Box, Button, Grid, Typography } from "@mui/material";
-import { DataGrid, GridColDef, ptBR } from "@mui/x-data-grid";
+import ListView from "@/components/common/list-view";
 import { useEffect, useState } from "react";
 
-const columns: GridColDef[] = [
+const columns: any[] = [
   { field: "id", headerName: "#", width: 70 },
   { field: "description", headerName: "Descrição", width: 200 },
   { field: "email", headerName: "Email", width: 400 },
@@ -26,25 +25,13 @@ export default function InvitesList() {
 
     setTimeout(fetchData, 500);
   }, []);
+
   return (
-    <div className="flex flex-col">
-      <div className="flex items-center justify-between mb-3">
-        <h1 className="text-3xl font-bold">Meus Convites</h1>
-      </div>
-      <Box sx={{ height: 400, width: "100%" }}>
-        <DataGrid
-          loading={loading}
-          rows={rows}
-          columns={columns}
-          initialState={{
-            pagination: {
-              paginationModel: { page: 0, pageSize: 5 },
-            },
-          }}
-          localeText={ptBR.components.MuiDataGrid.defaultProps.localeText}
-          pageSizeOptions={[5, 10]}
-        />
-      </Box>
-    </div>
+    <ListView
+      title="Meus Convites"
+      loading={loading}
+      rows={rows}
+      columns={columns}
+    />
   );
 }

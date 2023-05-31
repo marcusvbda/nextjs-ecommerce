@@ -12,8 +12,6 @@
     "@emotion/react": "^11.11.0",
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.1",
-    "@mui/icons-material": "^5.11.16",
-    "@mui/material": "^5.13.3",
     "@mui/x-data-grid": "^6.5.0",
     "@types/node": "20.2.4",
     "@types/react": "18.2.7",
