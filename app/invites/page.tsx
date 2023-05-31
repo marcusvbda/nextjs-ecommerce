@@ -1,4 +1,4 @@
-import InvitesList from "./fragments/invites-list";
+import InvitesList from "@/fragments/invites/invites-list";
 
 export default function InvitePage() {
   return <InvitesList />;
